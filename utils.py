@@ -18,7 +18,7 @@ pass
 
 def weightDistribution(beta, n):
     """
-    Generates power-law distributed random variable lying in borders [d_min, d_max]
+    Generates power-law distributed random number lying in borders [d_min, d_max]
     """
     u = 1.0 - rnd.random() # u \in R[0,1]
     d_min = 1.0 # min degree
