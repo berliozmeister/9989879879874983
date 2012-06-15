@@ -5,6 +5,9 @@ import os
 import networkx as nx
 import utils
 import matplotlib.pyplot as plt
+__author__ = '\n'.join(['Mikhail Bernovskiy',
+                        'Stas Fomin'])
+
 
 n = 900
 beta = 1.7

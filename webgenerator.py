@@ -7,10 +7,11 @@ import web
 import os
 import urllib
 import posixpath
-
 import networkx as nx
 import utils   
 import matplotlib.pyplot as plt
+__author__ = '\n'.join(['Mikhail Bernovskiy',
+                        'Stas Fomin'])
 
 if os.name == 'nt':
     import random as rnd
