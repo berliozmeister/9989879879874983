@@ -5,11 +5,8 @@ import os
 import networkx as nx
 import utils
 import matplotlib.pyplot as plt
-__author__ = '\n'.join(['Mikhail Bernovskiy',
-                        'Stas Fomin'])
 
-
-n = 900
+n = 200
 beta = 1.7
 mean_degree = 10
 
@@ -36,4 +33,9 @@ if n < 1000:
     utils.drawGraph(G)
 pngname = "generated/graph-%s-%s-%s-.png" % (str(n), str(beta), str(mean_degree))
 plt.savefig(pngname)
+
+if not os.path.exists('feed'):
+    os.mkdir('feed')
+
+utils.generateFeed(n)
 

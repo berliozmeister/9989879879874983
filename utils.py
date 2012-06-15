@@ -10,12 +10,20 @@ import os
 import random as rnd
 import matplotlib.pyplot as plt
 import networkx as nx
-__author__ = '\n'.join(['Mikhail Bernovskiy',
-                        'Stas Fomin'])
+import markovgen as mg
+#from Crypto.Random import random as rnd
+#pass
+
+
+
+#def is_valid_degree_sequence(sequence):
+    
+
+
 
 def weightDistribution(beta, n):
     """
-    Generates power-law distributed random number lying in borders [d_min, d_max]
+    Generates power-law distributed random variable lying in borders [d_min, d_max]
     """
     u = 1.0 - rnd.random() # u \in R[0,1]
     d_min = 1.0 # min degree
@@ -73,6 +81,40 @@ def drawGraph(G):
     pos=nx.spring_layout(Gcc)
     plt.axis('off')
     nx.draw_networkx_nodes(Gcc,pos,node_size=20)
-    nx.draw_networkx_edges(Gcc,pos,alpha=0.4) 
+    nx.draw_networkx_edges(Gcc,pos,alpha=0.4)
+    
+def generateMsg():
+    """
+    Generates random message consisting of 15 words
+    """
+    inputText = open('jeeves.txt')
+    markov = mg.Markov(inputText)
+    text = markov.generate_markov_text(15) + '\n'
+    return text
+
+def generateUserFeed(i):
+    """
+    Generates feed of up to 15 messages for user # i
+    """
+    filename = "feed/%s_feed.txt" %str(i)
+    f = open(filename, 'a')
+    numberOfMessages = rnd.randrange(1, 15)
+    for j in range(numberOfMessages):
+        messageID = str(i) + "." + str(j)
+        res = messageID + " " + generateMsg()
+        f.write(res)
+    #f.close()
+    return numberOfMessages
+        
+
+def generateFeed(n):
+    """
+    Generate feed for all n users where n is number of vertices of the graph
+    """        
+    msgNumArray = np.empty(n, dtype = int) # array where we keep number of messages
+    for i in range(n):
+        msgNumArray[i] = generateUserFeed(i)
+    print msgNumArray
+        
 
 
