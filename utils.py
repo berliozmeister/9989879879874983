@@ -10,15 +10,8 @@ import os
 import random as rnd
 import matplotlib.pyplot as plt
 import networkx as nx
-#from Crypto.Random import random as rnd
-#pass
-
-
-
-#def is_valid_degree_sequence(sequence):
-    
-
-
+__author__ = '\n'.join(['Mikhail Bernovskiy',
+                        'Stas Fomin'])
 
 def weightDistribution(beta, n):
     """
@@ -80,7 +73,6 @@ def drawGraph(G):
     pos=nx.spring_layout(Gcc)
     plt.axis('off')
     nx.draw_networkx_nodes(Gcc,pos,node_size=20)
-    nx.draw_networkx_edges(Gcc,pos,alpha=0.4)
-        
+    nx.draw_networkx_edges(Gcc,pos,alpha=0.4) 
 
 
