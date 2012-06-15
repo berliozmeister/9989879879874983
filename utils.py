@@ -8,11 +8,15 @@ some auxilary functions and classes to be defined here
 import numpy as np
 import os
 import random as rnd
-if os.name == 'nt':
-    import random as rnd
-else:
-    from Crypto.Random import random as rnd
-pass
+import matplotlib.pyplot as plt
+import networkx as nx
+#from Crypto.Random import random as rnd
+#pass
+
+
+
+#def is_valid_degree_sequence(sequence):
+    
 
 
 
@@ -53,6 +57,30 @@ def randPairings(G, arr):
         G.add_edge(np.searchsorted(delimiterArray, rnd.randrange(sumOfDegrees)),
                np.searchsorted(delimiterArray, rnd.randrange(sumOfDegrees)))
         someCounter += 1
+
+def drawDegreeHistogram(G):
+    """
+    Draws degree histogram of the graph
+    """
+    degreeSequence=sorted(nx.degree(G).values(),reverse=True)
+    plt.clf()
+    plt.cla()
+    plt.loglog(degreeSequence,'b-',marker='o')
+    plt.title("Degree rank plot")
+    plt.ylabel("degree")
+    plt.xlabel("rank")
+    
+def drawGraph(G):
+    """
+    Draws the graph structure. Not applicable for graphs with n > 1000.
+    """
+    plt.axes([0.45,0.45,0.45,0.45])
+    plt.cla()
+    Gcc=nx.connected_component_subgraphs(G)[0]
+    pos=nx.spring_layout(Gcc)
+    plt.axis('off')
+    nx.draw_networkx_nodes(Gcc,pos,node_size=20)
+    nx.draw_networkx_edges(Gcc,pos,alpha=0.4)
         
 
 
