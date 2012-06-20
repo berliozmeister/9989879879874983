@@ -53,7 +53,8 @@ def randPairings(G, arr):
     """
     someCounter = 0
     sumOfDegrees = arr.sum()
-    delimiterArray = np.cumsum(arr) # generates a delimiter array consisting of partial sums of given array
+    # generates a delimiter array consisting of partial sums of given array
+    delimiterArray = np.cumsum(arr)
     while someCounter < sumOfDegrees/2:
         G.add_edge(np.searchsorted(delimiterArray, rnd.randrange(sumOfDegrees)),
                np.searchsorted(delimiterArray, rnd.randrange(sumOfDegrees)))
@@ -63,10 +64,10 @@ def drawDegreeHistogram(G):
     """
     Draws degree histogram of the graph
     """
-    degreeSequence=sorted(nx.degree(G).values(),reverse=True)
+    degreeSequence = sorted(nx.degree(G).values(), reverse=True)
     plt.clf()
     plt.cla()
-    plt.loglog(degreeSequence,'b-',marker='o')
+    plt.loglog(degreeSequence, 'b-', marker='o')
     plt.title("Degree rank plot")
     plt.ylabel("degree")
     plt.xlabel("rank")
@@ -75,13 +76,13 @@ def drawGraph(G):
     """
     Draws the graph structure. Not applicable for graphs with n > 1000.
     """
-    plt.axes([0.45,0.45,0.45,0.45])
+    plt.axes([0.45, 0.45, 0.45, 0.45])
     plt.cla()
-    Gcc=nx.connected_component_subgraphs(G)[0]
-    pos=nx.spring_layout(Gcc)
+    Gcc = nx.connected_component_subgraphs(G)[0]
+    pos = nx.spring_layout(Gcc)
     plt.axis('off')
-    nx.draw_networkx_nodes(Gcc,pos,node_size=20)
-    nx.draw_networkx_edges(Gcc,pos,alpha=0.4)
+    nx.draw_networkx_nodes(Gcc, pos, node_size=20)
+    nx.draw_networkx_edges(Gcc, pos, alpha=0.4)
     
 def generateMsg():
     """
@@ -96,7 +97,7 @@ def generateUserFeed(i):
     """
     Generates feed of up to 15 messages for user # i
     """
-    filename = "feed/%s_feed.txt" %str(i)
+    filename = "feed/%s_feed.txt" % str(i)
     f = open(filename, 'a')
     numberOfMessages = rnd.randrange(1, 15)
     for j in range(numberOfMessages):

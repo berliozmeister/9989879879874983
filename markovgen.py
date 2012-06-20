@@ -49,4 +49,6 @@ class Markov(object):
 		return ' '.join(gen_words)
 			
 			
-		
+if __name__ == '__main__':
+    markov = Markov(open('jeeves.txt'))
+    print markov.generate_markov_text()
